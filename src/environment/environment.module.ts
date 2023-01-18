@@ -2,7 +2,7 @@ import { ConfigModule } from '@nestjs/config/dist';
 import { Environment } from './types/environment';
 import { EnvironmentService } from './services/environment.service';
 import { Module } from '@nestjs/common';
-import Joi from 'joi';
+import * as Joi from 'joi';
 
 @Module({
   imports: [
