@@ -5,7 +5,7 @@ import * as crypto from 'crypto';
 
 export type TenantDocument = HydratedDocument<Tenant>;
 @Schema({
-  autoIndex: false,
+  autoIndex: true,
   toJSON: { transform: omitSensitive },
 })
 export class Tenant {
@@ -67,6 +67,8 @@ export class Tenant {
 }
 
 export const TenantSchema = SchemaFactory.createForClass(Tenant);
+
+TenantSchema.index({ email: 1 }, { unique: true, name: 'emailUniqueKey'})
 
 TenantSchema.pre('save', function (next: Function) {
   this.createdAt = new Date();
