@@ -3,4 +3,5 @@ export type Environment = {
   PORT: number;
   ENABLE_SWAGGER: boolean;
   MONGODB_URL: string;
+  MONGODB_DATABASE: string;
 };

@@ -15,6 +15,7 @@ import * as Joi from 'joi';
         PORT: Joi.number().default(8080),
         ENABLE_SWAGGER: Joi.boolean().default(true),
         MONGODB_URL: Joi.string().required(),
+        MONGODB_DATABASE: Joi.string().required(),
       }),
     }),
   ],
