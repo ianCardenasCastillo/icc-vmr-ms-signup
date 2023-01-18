@@ -29,7 +29,8 @@ export class Tenant {
   // Status management
   @Prop({
     type: String,
-    required: true,
+    required: false,
+    default: 'active',
     enum: StatusTenantAvailable,
   })
   status: StatusTenantAvailable;
