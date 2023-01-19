@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppController } from './app.controller';
 import { Tenant } from './schemas/tenant.schema';
 import { getModelToken } from '@nestjs/mongoose';
+import { JwtService } from '@nestjs/jwt';
 
 describe('AppController', () => {
   let appController: AppController;
@@ -16,6 +17,7 @@ describe('AppController', () => {
           provide: getModelToken(Tenant.name),
           useValue: {},
         },
+        JwtService
       ],
     }).compile();
 

@@ -17,9 +17,8 @@ const serviceName = 'icc-vmr-ms-signup';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // get main services
+  // get environment services
   const environmentSrvc = app.get(EnvironmentService);
-  const logger = app.get(Logger);
 
   // use app
   app.setGlobalPrefix(serviceName);
@@ -32,24 +31,23 @@ async function bootstrap() {
     WinstonModule.createLogger({
       instance: getLogger(environmentSrvc.isProd, {
         service: 'signup',
-        type: 'ms',
+        type: 'microservice',
         system: 'icc-vmr',
       }),
     }),
   );
-
+  
   // get variables
   const port = environmentSrvc.getEnvironmentValue('PORT');
-
   // validations
-  if (environmentSrvc.isSwaggerEnabled) enableSwagger(app, port, logger);
+  if (environmentSrvc.isSwaggerEnabled) enableSwagger(app, port);
 
   await app.listen(port, () => {
-    logger.log(`${serviceName} run in port ${port}`);
+    Logger.log(`${serviceName} run in port ${port}`);
   });
 }
 
-function enableSwagger(app: INestApplication, port: number, logger: Logger) {
+function enableSwagger(app: INestApplication, port: number) {
   const config = new DocumentBuilder()
     .setTitle(serviceName)
     .setDescription('Microservice for signup tenants')
@@ -59,8 +57,8 @@ function enableSwagger(app: INestApplication, port: number, logger: Logger) {
 
   const document = SwaggerModule.createDocument(app, config);
 
-  logger.log(`[Swagger URL]: http://localhost:${port}/api-doc`);
-  logger.log(`[Postman JSON]: http://localhost:${port}/api-doc-json`);
+  Logger.log(`[Swagger URL]: http://localhost:${port}/api-doc`);
+  Logger.log(`[Postman JSON]: http://localhost:${port}/api-doc-json`);
 
   SwaggerModule.setup('api-doc', app, document);
 }

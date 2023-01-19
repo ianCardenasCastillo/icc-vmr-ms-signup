@@ -32,10 +32,6 @@ import { SignUpService } from './sign-up/sign-up.service';
   providers: [
     DatabaseService,
     SignUpService,
-    {
-      provide: getModelToken(Tenant.name),
-      useValue: {},
-    },
   ],
 })
 export class AppModule {}
