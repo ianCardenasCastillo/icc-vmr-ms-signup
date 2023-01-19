@@ -1,12 +1,27 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { SignUpService } from './sign-up/sign-up.service';
+import { CreateTenantDto } from './dto/create-tenant.dto';
+import { Body, Controller, Get, HttpStatus, Post, Res, Version, VERSION_NEUTRAL } from '@nestjs/common';
+import { Response } from 'express';
 
-@Controller()
+@Controller({
+  path: 'signup'
+})
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private signUpService: SignUpService,
+  ) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Post('execute')
+  @Version([VERSION_NEUTRAL, '1'])
+  async signUpTenant(@Res() res: Response, @Body() createDto: CreateTenantDto) {
+    try {
+      const tenantCreated = await this.signUpService.addTenant(createDto);
+
+      return res.status(HttpStatus.CREATED).send({ tenantCreated });
+    } catch (error) {
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send({
+        error,
+      });
+    }
   }
 }
