@@ -2,9 +2,14 @@
   "name": "icc-vmr-ms-signup",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "@icc-dev",
   "private": true,
   "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icc-dev/icc-vmr-ms-signup"
+  },
+  "homepage": "https://github.com/icc-dev/icc-vmr-ms-signup#readme",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
