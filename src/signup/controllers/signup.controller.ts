@@ -1,5 +1,5 @@
-import { SignUpService } from './sign-up/sign-up.service';
-import { CreateTenantDto } from './dto/create-tenant.dto';
+import { SignUpService } from '../services/signup.service';
+import { CreateTenantDto } from '../dto/create-tenant.dto';
 import {
   Body,
   Controller,

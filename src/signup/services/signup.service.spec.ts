@@ -1,7 +1,7 @@
 import { getModelToken } from '@nestjs/mongoose';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Tenant } from '../schemas/tenant.schema';
-import { SignUpService } from './sign-up.service';
+import { SignUpService } from './signup.service';
 
 describe('SignUpService', () => {
   let service: SignUpService;

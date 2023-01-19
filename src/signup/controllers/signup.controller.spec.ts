@@ -1,7 +1,7 @@
-import { SignUpService } from './sign-up/sign-up.service';
+import { SignUpService } from '../services/signup.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './app.controller';
-import { Tenant } from './schemas/tenant.schema';
+import { AppController } from './signup.controller';
+import { Tenant } from '../schemas/tenant.schema';
 import { getModelToken } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
 
