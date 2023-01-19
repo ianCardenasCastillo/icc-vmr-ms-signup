@@ -16,6 +16,9 @@ import * as Joi from 'joi';
         ENABLE_SWAGGER: Joi.boolean().default(true),
         MONGODB_URL: Joi.string().required(),
         MONGODB_DATABASE: Joi.string().required(),
+        JWT_SECRET: Joi.string().required(),
+        JWT_PUBLIC: Joi.string().required(),
+        JWT_EXPIRE_TIME: Joi.string().default('1800s')
       }),
     }),
   ],
