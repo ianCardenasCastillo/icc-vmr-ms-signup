@@ -1,4 +1,6 @@
+import { JwtService } from '@core/jwt';
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { getModelToken, MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { DatabaseService } from './core/database';
@@ -20,6 +22,11 @@ import { SignUpService } from './sign-up/sign-up.service';
         schema: TenantSchema,
       },
     ]),
+    JwtModule.registerAsync({
+      imports: [EnvironmentModule],
+      useClass: JwtService,
+      inject: [EnvironmentService]
+    }),
   ],
   controllers: [AppController],
   providers: [
