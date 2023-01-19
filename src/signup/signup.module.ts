@@ -1,7 +1,7 @@
 import { DatabaseService } from '@core/database';
 import { EnvironmentModule, EnvironmentService } from '@core/environment';
 import { JwtService } from '@core/jwt';
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './controllers/signup.controller';
@@ -32,6 +32,7 @@ import { SignUpService } from './services/signup.service';
   providers: [
     DatabaseService,
     SignUpService,
+    Logger
   ],
 })
 export class SignUpModule {}
