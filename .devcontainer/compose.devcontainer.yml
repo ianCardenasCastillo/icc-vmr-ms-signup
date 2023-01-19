@@ -1,0 +1,8 @@
+services:
+  icc-vmr-ms-signup:
+    build:
+      dockerfile: .devcontainer/Dockerfile
+      target: dev
+    volumes:
+      - ./icc-vmr-ms-signup:/app
+      - /app/node_modules/
