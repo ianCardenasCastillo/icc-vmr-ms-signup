@@ -68,7 +68,7 @@ export class Tenant {
 
 export const TenantSchema = SchemaFactory.createForClass(Tenant);
 
-TenantSchema.index({ email: 1 }, { unique: true, name: 'emailUniqueKey'})
+TenantSchema.index({ email: 1 }, { unique: true, name: 'emailUniqueKey' });
 
 TenantSchema.pre('save', function (next: Function) {
   this.createdAt = new Date();

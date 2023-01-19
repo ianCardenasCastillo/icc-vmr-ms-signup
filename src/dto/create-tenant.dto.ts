@@ -1,13 +1,13 @@
-import { IsEmail, IsNotEmpty } from "class-validator";
+import { IsEmail, IsNotEmpty } from 'class-validator';
 
 export class CreateTenantDto {
-    @IsEmail()
-    email: string;
+  @IsEmail()
+  email: string;
 
-    @IsNotEmpty()
-    password: string
-    
-    static describe(instance): Array<string> {
-        return Object.getOwnPropertyNames(instance);
-    }
+  @IsNotEmpty()
+  password: string;
+
+  static describe(instance): Array<string> {
+    return Object.getOwnPropertyNames(instance);
+  }
 }

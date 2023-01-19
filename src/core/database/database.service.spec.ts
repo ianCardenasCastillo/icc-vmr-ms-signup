@@ -10,10 +10,7 @@ describe('DatabaseService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [EnvironmentModule, ConfigModule],
-      providers: [
-        DatabaseService,
-        EnvironmentService
-      ],
+      providers: [DatabaseService, EnvironmentService],
     }).compile();
 
     service = module.get<DatabaseService>(DatabaseService);

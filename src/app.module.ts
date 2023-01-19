@@ -12,7 +12,7 @@ import { SignUpService } from './sign-up/sign-up.service';
     MongooseModule.forRootAsync({
       imports: [EnvironmentModule],
       useClass: DatabaseService,
-      inject: [EnvironmentService]
+      inject: [EnvironmentService],
     }),
     MongooseModule.forFeature([
       {

@@ -1,15 +1,21 @@
 import { SignUpService } from './sign-up/sign-up.service';
 import { CreateTenantDto } from './dto/create-tenant.dto';
-import { Body, Controller, Get, HttpStatus, Post, Res, Version, VERSION_NEUTRAL } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  HttpStatus,
+  Post,
+  Res,
+  Version,
+  VERSION_NEUTRAL,
+} from '@nestjs/common';
 import { Response } from 'express';
 
 @Controller({
-  path: 'signup'
+  path: 'signup',
 })
 export class AppController {
-  constructor(
-    private signUpService: SignUpService,
-  ) {}
+  constructor(private signUpService: SignUpService) {}
 
   @Post('execute')
   @Version([VERSION_NEUTRAL, '1'])
