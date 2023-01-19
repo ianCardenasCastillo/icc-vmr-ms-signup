@@ -6,7 +6,7 @@ import { JwtModuleOptions, JwtOptionsFactory } from '@nestjs/jwt';
 export class JwtService implements JwtOptionsFactory {
     constructor(private readonly environmentSrvc: EnvironmentService) { }
     
-    createJwtOptions(): Promise<JwtModuleOptions> | JwtModuleOptions {
+    createJwtOptions(): JwtModuleOptions {
         return {
             privateKey: this.environmentSrvc.getEnvironmentValue('JWT_SECRET'),
             publicKey: this.environmentSrvc.getEnvironmentValue('JWT_PUBLIC'),
