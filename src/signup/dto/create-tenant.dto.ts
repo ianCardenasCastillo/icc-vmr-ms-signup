@@ -6,7 +6,7 @@ export class CreateTenantDto {
     required: true,
     type: String,
     example: 'me@domain.cl',
-    format: '/^[w-.]+@([w-]+.)+[w-]{2,4}$/g',
+    pattern: '/^[w-.]+@([w-]+.)+[w-]{2,4}$/g',
   })
   @IsEmail()
   email: string;
@@ -15,7 +15,7 @@ export class CreateTenantDto {
     required: true,
     type: String,
     example: 'A*d5d6ad',
-    format: '/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/',
+    pattern: '/^(?=.*[A-Z])(?=.*[&!@#$*])(?=.*[0-9])(?=.*[a-z]).{8,}$/',
   })
   @IsNotEmpty()
   @IsStrongPassword({
