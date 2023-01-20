@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateTenantDto } from '../dto/create-tenant.dto';
+import { ICreatedTenantDto } from '../interfaces/created-tenant.interface';
 import { TenantDocument } from '../schemas/tenant.schema';
 
 @Injectable()
@@ -10,7 +11,9 @@ export class SignUpService {
     @InjectModel('Tenant') private tenantModel: Model<TenantDocument>,
   ) {}
 
-  async addTenant(createTenantDto: CreateTenantDto): Promise<any> {
+  async addTenant(
+    createTenantDto: CreateTenantDto,
+  ): Promise<ICreatedTenantDto> {
     const tenantRef = new this.tenantModel(createTenantDto);
     tenantRef.setPassword(createTenantDto.password);
     const validateError = tenantRef.validateSync();
