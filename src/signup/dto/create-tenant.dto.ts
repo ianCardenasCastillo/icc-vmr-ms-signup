@@ -14,8 +14,8 @@ export class CreateTenantDto {
   @ApiProperty({
     required: true,
     type: String,
-    example: 'me@domain.cl',
-    format: '/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8}$/',
+    example: 'A*d5d6ad',
+    format: '/^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z]).{8,}$/',
   })
   @IsNotEmpty()
   @IsStrongPassword({
