@@ -41,10 +41,3 @@ export class ErrorsInterceptor implements NestInterceptor {
     );
   }
 }
-/*
-  constructor(
-    response: string | Record<string, any>, 
-    status: number, 
-    options?: HttpExceptionOptions
-  );
- */
