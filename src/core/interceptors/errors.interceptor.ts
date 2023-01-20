@@ -9,14 +9,13 @@ import {
   Injectable,
   NestInterceptor,
   HttpStatus,
-  RequestTimeoutException
+  RequestTimeoutException,
 } from '@nestjs/common';
 import { HttpException } from '@nestjs/common/exceptions';
 import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable()
 export class ErrorsInterceptor implements NestInterceptor {
-  constructor() {}
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
       catchError((err) => {
@@ -25,17 +24,17 @@ export class ErrorsInterceptor implements NestInterceptor {
           : err.message;
         const cause = isMongoError(err)
           ? { code: err.code, keyValue: err.keyValue }
-          : err
+          : err;
         return throwError(
           () =>
             new HttpException(
               {
-                statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+                statusCode: err.status || HttpStatus.INTERNAL_SERVER_ERROR,
                 message,
                 cause,
-                description: err.name
+                description: err.name,
               },
-              HttpStatus.INTERNAL_SERVER_ERROR,
+              err.status || HttpStatus.INTERNAL_SERVER_ERROR,
             ),
         );
       }),

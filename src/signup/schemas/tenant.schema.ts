@@ -70,6 +70,7 @@ export const TenantSchema = SchemaFactory.createForClass(Tenant);
 
 TenantSchema.index({ email: 1 }, { unique: true, name: 'emailUniqueKey' });
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 TenantSchema.pre('save', function (next: Function) {
   this.createdAt = new Date();
   this.updatedAt = new Date();
@@ -78,6 +79,7 @@ TenantSchema.pre('save', function (next: Function) {
   next();
 });
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 TenantSchema.methods.setPassword = function (password: string) {
   // Creating a unique salt for a particular Tenant
   this.salt = crypto.randomBytes(16).toString('hex');
