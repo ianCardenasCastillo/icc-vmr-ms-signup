@@ -21,7 +21,7 @@ import {
 @Controller({
   path: 'signup',
 })
-export class AppController {
+export class SignUpController {
   constructor(
     private signUpService: SignUpService,
     private jwtService: JwtService,

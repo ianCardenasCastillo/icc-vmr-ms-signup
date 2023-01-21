@@ -1,27 +1,27 @@
 import { SignUpService } from '../services/signup.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppController } from './signup.controller';
+import { SignUpController } from './signup.controller';
 import { Tenant } from '../schemas/tenant.schema';
 import { getModelToken } from '@nestjs/mongoose';
 import { JwtService } from '@nestjs/jwt';
 
 describe('AppController', () => {
-  let appController: AppController;
+  let appController: SignUpController;
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [AppController],
+      controllers: [SignUpController],
       providers: [
         SignUpService,
         {
           provide: getModelToken(Tenant.name),
           useValue: {},
         },
-        JwtService
+        JwtService,
       ],
     }).compile();
 
-    appController = app.get<AppController>(AppController);
+    appController = app.get<SignUpController>(SignUpController);
   });
 
   describe('root', () => {
