@@ -63,30 +63,27 @@ export class Tenant {
     trim: true,
   })
   domain: string;
-  setPassword: (password: string) => void;
 }
 
 export const TenantSchema = SchemaFactory.createForClass(Tenant);
 
 TenantSchema.index({ email: 1 }, { unique: true, name: 'emailUniqueKey' });
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-TenantSchema.pre('save', function (next: Function) {
-  this.createdAt = new Date();
-  this.updatedAt = new Date();
-  this.tenantId = this._id.toString();
-  this.domain = this.email.split('@')[1];
-  next();
-});
-
-// eslint-disable-next-line @typescript-eslint/ban-types
-TenantSchema.methods.setPassword = function (password: string) {
+TenantSchema.queue('setDefaultProperties', []);
+TenantSchema.queue('setPassword', []);
+TenantSchema.methods.setPassword = function () {
   // Creating a unique salt for a particular Tenant
   this.salt = crypto.randomBytes(16).toString('hex');
   // Hashing Tenant's salt and password with 1000 iterations,
   this.password = crypto
-    .pbkdf2Sync(password, this.salt, 8000, 64, 'sha512')
+    .pbkdf2Sync(this.password, this.salt, 8000, 64, 'sha512')
     .toString('hex');
+};
+TenantSchema.methods.setDefaultProperties = function () {
+  this.createdAt = new Date();
+  this.updatedAt = new Date();
+  this.tenantId = this._id.toString();
+  this.domain = this.email.split('@')[1];
 };
 
 function omitSensitive(_doc, obj) {
