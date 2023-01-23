@@ -6,6 +6,7 @@ import { DatabaseService } from './database.service';
 
 describe('DatabaseService', () => {
   let service: DatabaseService;
+  let environmentSrvc: EnvironmentService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -14,9 +15,30 @@ describe('DatabaseService', () => {
     }).compile();
 
     service = module.get<DatabaseService>(DatabaseService);
+    environmentSrvc = module.get<EnvironmentService>(EnvironmentService);
   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
+  describe('Defined providers', () => {
+    it('should be service defined', () => {
+      expect(service).toBeDefined();
+    });
+    it('should be environment defined', () => {
+      expect(environmentSrvc).toBeDefined();
+    });
+  });
+
+  describe('Mongoose options uri', () => {
+    it('showld defined', () => {
+      const options = service.createMongooseOptions();
+      expect(options.uri).toBeDefined();
+    });
+    it('showld equals environment', () => {
+      const options = service.createMongooseOptions();
+      expect(options.uri).toEqual(
+        `${environmentSrvc.getEnvironmentValue(
+          'MONGODB_URL',
+        )}/${environmentSrvc.getEnvironmentValue('MONGODB_DATABASE')}`,
+      );
+    });
   });
 });
