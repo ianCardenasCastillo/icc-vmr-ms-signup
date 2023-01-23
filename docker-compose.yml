@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  api:
+    container_name: 'icc_vmr_ms_signup${NODE_ENV}'
+    image: 'icc_vmr_ms_signup${NODE_ENV}'
+    environment:
+      - NODE_ENV:${NODE_ENV}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    entrypoint: ['npm', 'run', 'start:${NODE_ENV}']
+    env_file:
+      - .env
+    ports:
+      - 8080:8080
+    networks:
+      - nesjs-network
+    volumes:
+      - ./:/usr/src/app
+    restart: unless-stopped
+networks:
+  nesjs-network:
