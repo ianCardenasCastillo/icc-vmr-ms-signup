@@ -14,12 +14,7 @@ export class SignUpService {
   async addTenant(
     createTenantDto: CreateTenantDto,
   ): Promise<ICreatedTenantDto> {
-    const tenantRef = new this.tenantModel(createTenantDto);
-    tenantRef.setPassword(createTenantDto.password);
-    const validateError = tenantRef.validateSync();
-    if (validateError) {
-      throw validateError['errors'];
-    }
-    return tenantRef.save();
+    const createdCat = await this.tenantModel.create(createTenantDto);
+    return createdCat;
   }
 }
