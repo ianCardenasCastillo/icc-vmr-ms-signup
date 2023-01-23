@@ -36,7 +36,7 @@ async function bootstrap() {
       }),
     }),
   );
-  
+
   // get variables
   const port = environmentSrvc.getEnvironmentValue('PORT');
   // validations
@@ -52,7 +52,7 @@ function enableSwagger(app: INestApplication, port: number) {
     .setTitle(serviceName)
     .setDescription('Microservice for signup tenants')
     .setVersion('1.0')
-    .setExternalDoc('Postman collection', '/api-json')
+    .setExternalDoc('Postman collection', '/api-doc-json')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
