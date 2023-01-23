@@ -8,6 +8,7 @@ export class CreateTenantDto {
     example: 'me@domain.cl',
     pattern: '/^[w-.]+@([w-]+.)+[w-]{2,4}$/g',
   })
+  @IsNotEmpty()
   @IsEmail()
   email: string;
 
