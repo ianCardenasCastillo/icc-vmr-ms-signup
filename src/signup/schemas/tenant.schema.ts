@@ -1,7 +1,7 @@
 import { HydratedDocument } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { StatusTenantAvailable } from '../enums/tenant.enum';
-import { SignupUtils } from '../signup.utils';
+import { SignupUtils } from '../utils/signup.utils';
 
 export type TenantDocument = HydratedDocument<Tenant>;
 @Schema({
