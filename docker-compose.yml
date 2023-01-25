@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  api:
+  icc_vmr_ms_signup:
     container_name: 'icc_vmr_ms_signup_${NODE_ENV}'
     image: 'icc_vmr_ms_signup_${NODE_ENV}'
     environment:
