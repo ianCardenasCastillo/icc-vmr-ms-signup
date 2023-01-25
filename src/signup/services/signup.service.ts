@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { CreateTenantDto } from '../dto/create-tenant.dto';
 import { ICreatedTenantDto } from '../interfaces/created-tenant.interface';
 import { TenantDocument } from '../schemas/tenant.schema';
+import { SignupUtils } from '../signup.utils';
 
 @Injectable()
 export class SignUpService {
@@ -14,6 +15,7 @@ export class SignUpService {
   async addTenant(
     createTenantDto: CreateTenantDto,
   ): Promise<ICreatedTenantDto> {
+    createTenantDto.password = await SignupUtils.returnHashPassword(createTenantDto.password);
     const createdCat = await this.tenantModel.create(createTenantDto);
     return createdCat;
   }
