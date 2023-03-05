@@ -1,4 +1,5 @@
 import { EnvironmentService } from '@core/environment';
+import { LoggerInterceptor } from '@core/interceptors';
 import { getLogger } from '@core/utils';
 import {
   INestApplication,
@@ -36,6 +37,8 @@ async function bootstrap() {
       }),
     }),
   );
+  app.useGlobalInterceptors(new LoggerInterceptor(Logger))
+
 
   // get variables
   const port = environmentSrvc.getEnvironmentValue('PORT');

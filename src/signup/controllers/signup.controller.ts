@@ -4,20 +4,20 @@ import {
   Body,
   Controller,
   Post,
-  UseInterceptors,
   Version,
   VERSION_NEUTRAL,
+  UseFilters,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { ErrorsInterceptor } from '@core/interceptors';
 import {
   ApiCreatedResponse,
   ApiInternalServerErrorResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { HttpExceptionFilter, MongoExceptionFilter } from '@core/filters';
 
 @ApiTags('signup')
-@UseInterceptors(ErrorsInterceptor)
+@UseFilters(HttpExceptionFilter, MongoExceptionFilter)
 @Controller({
   path: 'signup',
 })
